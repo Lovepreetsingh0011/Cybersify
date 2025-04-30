@@ -40,13 +40,19 @@ let arr = [
 
 let similor = [];
 
-arr.forEach((val) => {
-  let res = similor?.find((s) => s.Sports === val.Sports);
-  if (res) {
-    res.Player += val.Player;
-  } else {
-    similor.push({ Sports: val.Sports, Player: val.Player });
-  }
-});
+function Test() {
+  arr.forEach((val) => {
+    let res = similor?.find((s) => s.Sports === val.Sports);
+    if (res) {
+      res.Player += val.Player;
+      res.count++;
+    } else {
+      similor.push({ Sports: val.Sports, Player: val.Player, count: 1 });
+    }
+  });
 
-console.log(similor);
+  similor = similor.filter((k) => k.count > 1);
+  console.log(similor);
+}
+
+Test();
