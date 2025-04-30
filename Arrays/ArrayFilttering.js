@@ -5,12 +5,12 @@ let Count = 0;
 function ForeachMethod() {
   Students.forEach((m) => {
     if (Number.isInteger(m)) {
-      return (Count = m);
+      return (Count += m);
     }
   });
   console.log(Count, "count");
 }
-ForeachMethod();
+// ForeachMethod();
 
 /****************************************************** */
 // Map Method Return a New Array from calling a function for every element
@@ -86,10 +86,43 @@ if ([a, b, c].includes([""])) {
 
 // FindTeacher("Eng");
 
+// let Teacher = ["A", "B", "C", "D"];
+// let subject = ["Eng", "Math", "Science", "Eng"];
+
+// // For Get Teachers And subjects
+// function FindData(val) {
+//   let teacher = Teacher.indexOf(val);
+
+//   if (teacher >= 0) {
+//     let sub = subject[teacher];
+//     let res = subject.find((m) => m === sub);
+//     return res;
+//   } else {
+//     let ind = subject.indexOf(val);
+
+//     if (ind < 0) return false;
+//     let indarr = [];
+//     subject.forEach((m, i) => {
+//       if (m == val) indarr.push(i);
+//     });
+//     // console.log(indarr);
+
+//     let teacharr = [];
+
+//     indarr.forEach((k) => {
+//       teacharr.push(Teacher[k]);
+//     });
+//     return teacharr;
+//   }
+// }
+
+// console.log(FindData("C"));
+
 let Teacher = ["A", "B", "C", "D"];
 let subject = ["Eng", "Math", "Science", "Eng"];
 
-function FindTeachers(val) {
+// For Get Teachers And subjects
+function FindData(val) {
   let teacher = Teacher.indexOf(val);
 
   if (teacher >= 0) {
@@ -114,5 +147,25 @@ function FindTeachers(val) {
     return teacharr;
   }
 }
+// console.log(FindData("C"));
 
-console.log(FindTeachers("C"));
+function AddTeacherAndSubject(name, ind, sub) {
+  console.log(Teacher);
+  console.log(subject);
+  for (let i = Teacher.length; i > ind; i--) {
+    Teacher[i] = Teacher[i - 1];
+  }
+
+  Teacher[ind] = name;
+
+  for (let i = subject.length; i > ind; i--) {
+    subject[i] = subject[i - 1];
+  }
+
+  subject[ind] = sub;
+
+  console.log(Teacher);
+  console.log(subject);
+}
+
+AddTeacherAndSubject("M", 2, "Hindi");
