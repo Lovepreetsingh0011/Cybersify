@@ -53,6 +53,20 @@ function Test() {
 
   similor = similor.filter((k) => k.count > 1);
   console.log(similor);
+  let NewArr = [];
+
+  let obj = similor[0];
+  let testing = [21, 3, 22, 32, 4];
+  let test = [testing[0]];
+  for (let i = 0; i < testing.length; i++) {
+    for (let j = i + 1; j < i.length; j++) {
+      if (test > testing[j]) {
+        test = testing[j];
+      }
+    }
+  }
+
+  console.log(obj);
 }
 
 Test();
