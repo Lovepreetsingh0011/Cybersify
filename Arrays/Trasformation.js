@@ -39,7 +39,7 @@ let arr = [
 ];
 
 let similor = [];
-
+// FInd the Common Sports And Also Cal their Player After That Sort The Array
 function Test() {
   arr.forEach((val) => {
     let res = similor?.find((s) => s.Sports === val.Sports);
@@ -53,22 +53,23 @@ function Test() {
 
   similor = similor.filter((k) => k.count > 1);
   console.log(similor);
-  //   let NewArr = [];
 
-  //   let obj = similor[0];
-  //   let testing = [21, 3, 22, 32, 4];
-  //   let test = [testing[0]];
-  //   for (let i = 0; i < testing.length; i++) {
-  //     for (let j = i + 1; j < i.length; j++) {
-  //       if (test > testing[j]) {
-  //         test = testing[j];
-  //       }
-  //     }
-  //   }
-
-  similor.sort((a, b) => b.Player - a.Player);
+  // similor.sort((a, b) => b.Player - a.Player);
+  for (let i = 0; i < similor.length - 1; i++) {
+    for (let j = 0; j < similor.length - 1; j++) {
+      if (similor[j].Player < similor[j + 1].Player) {
+        [similor[j], similor[j + 1]] = [similor[j + 1], similor[j]];
+      }
+    }
+  }
 
   console.log(similor);
 }
 
 Test();
+
+// Reverse Method is USed to Reverse The Array
+let Arr = [1, 3, 45, 5, 43];
+
+console.log("Reverse Array");
+console.log(Arr.reverse());

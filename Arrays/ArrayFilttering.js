@@ -168,4 +168,74 @@ function AddTeacherAndSubject(name, ind, sub) {
   console.log(subject);
 }
 
-AddTeacherAndSubject("M", 2, "Hindi");
+// AddTeacherAndSubject("M", 2, "Hindi");
+
+// Buuble Sort Algo
+
+function BubbleSort(arr) {
+  let len = arr.length;
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len; j++) {
+      if (arr[j] > arr[j + 1]) {
+        // Swap
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+  return arr;
+}
+// console.log(BubbleSort([2, 3, 23, 5, 33, 22, 45]));
+
+// Reducer Method
+//It’s a method that processes an array and returns just one final result, whether that’s a number, object, string, array, etc.
+
+const arr = [23, 32, 12, 3, 4];
+
+function ForSumAllelemets() {
+  let ress = arr.reduce((acc, curn) => {
+    return acc + curn;
+  }, 0);
+  console.log("Sum of ALL values");
+  console.log(ress);
+}
+
+// ForSumAllelemets();
+
+// for Find Max Value
+
+function FindMax() {
+  let ress = arr.reduce((acc, curn) => {
+    return acc < curn ? curn : acc;
+  }, 0);
+  console.log("Max Value");
+
+  console.log(ress);
+}
+
+// FindMax();
+
+// for Find Min Value
+// [23, 32, 12, 3, 4];
+
+function FindMin() {
+  let ress = arr.reduce((acc, curn) => {
+    console.log(acc);
+
+    return acc > curn ? curn : acc;
+  });
+  console.log("Min Value");
+
+  console.log(ress);
+}
+
+FindMin();
+
+// Every Mehtod
+
+function EveryMethod() {
+  let res = arr.every((m) => m > 18);
+  console.log("EveryMethod");
+
+  console.log(res);
+}
+EveryMethod();

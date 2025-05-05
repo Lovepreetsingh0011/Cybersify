@@ -1,28 +1,35 @@
 import { Batter } from "../../Models/CakeAppModels/Batters.Models.js";
 import { Topping } from "../../Models/CakeAppModels/Topping.Models.js";
 import { Cake } from "../../Models/CakeAppModels/Cake.Models.js";
+import {
+  BatterValidator,
+  ToppingValidator,
+  CakeValidor,
+} from "../../Validatior/CakeApp.Validator.js";
 // ***************************************************
-// ALL Cake Function
+
+// const schema = Joi.object({
+//   Name: Joi.string().required(),
+//   batterid: Joi.string().required(),
+//   toppingid: Joi.string().required(),
+// });
+
+// ***************************************************
+// Cake Functions
 const CreateCake = async (req, res) => {
   try {
-    const { batterid, toppingid, Name } = req.body;
-    if (!batterid || batterid?.trim() == "") {
-      return res
-        .status(422)
-        .json({ ErrorMsg: "batterid is Required", Success: false });
-    }
-    if (!toppingid || toppingid?.trim() == "") {
-      return res
-        .status(422)
-        .json({ ErrorMsg: "Toppingid is Required", Success: false });
-    }
-    if (!Name || Name?.trim() == "") {
-      return res
-        .status(422)
-        .json({ ErrorMsg: "CreateCake is Required", Success: false });
+    const { error, value } = Cake.validate(req.body);
+
+    if (error) {
+      return res.status(422).json({
+        ErrorMsg: error?.details[0]?.message,
+        Success: false,
+      });
     }
 
-    let response = await Cake.create({
+    const { Name, batterid, toppingid } = value;
+
+    const response = await Cake.create({
       Name,
       Batter: batterid,
       Topping: toppingid,
@@ -30,33 +37,43 @@ const CreateCake = async (req, res) => {
 
     if (!response) {
       return res.status(500).json({
-        ErrorMsg: "Internal Server Error Will Create Cake",
+        ErrorMsg: "Internal Server Error While Creating Cake",
         Success: false,
       });
     }
 
-    //  Return  Statement
-    return res
-      .status(200)
-      .json({ Data: response, Success: true, Msg: "Cake Created Succssfully" });
+    return res.status(200).json({
+      Data: response,
+      Success: true,
+      Msg: "Cake Created Successfully",
+    });
   } catch (error) {
-    return res
-      .status(404)
-      .json({ ErrorMsg: "Error in CreateCake Controler", Success: false });
+    return res.status(500).json({
+      ErrorMsg: "Error in CreateCake Controller",
+      Success: false,
+    });
   }
 };
+
 // For Get Cake
 const GetCake = async (req, res) => {
   try {
     const { Name } = req.params;
 
-    if (!Name) {
-      return res.status(404).json({
-        ErrorMsg: " Name Not Found",
+    // if (!Name) {
+    //   return res.status(404).json({
+    //     ErrorMsg: " Name Not Found",
+    //     Success: false,
+    //   });
+    // }
+
+    const { error, value } = schema.validate({ Name });
+    if (error) {
+      return res.status(422).json({
+        ErrorMsg: error?.details[0]?.message,
         Success: false,
       });
     }
-
     const response = await Cake.findOne({ Name }).populate("Batter Topping");
     //   .populate("Topping");
 

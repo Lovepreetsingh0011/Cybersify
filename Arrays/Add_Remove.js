@@ -132,3 +132,10 @@ MixedArr.forEach((m) => {
 
 console.log(oodd);
 console.log(evenn);
+
+// Concationation
+let arr1 = [1, 2, 3, 4, 5];
+let arr2 = [4, 5, 22, 43, 235];
+let arr3 = ["s", "d", "dw", 43, 235];
+console.log(" 2 Array Concat", arr1.concat(arr2));
+console.log(" 3 Array Concat", arr1.concat(arr2, arr3));
